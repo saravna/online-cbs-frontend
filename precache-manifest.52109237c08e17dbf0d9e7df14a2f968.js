@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "b9095637f4b239a42924a117cf81c5ed",
+    "revision": "6e80d9abeac9622d28d684b763b4ee11",
     "url": "/online-cbs-frontend/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/online-cbs-frontend/static/css/2.35f98baf.chunk.css"
   },
   {
-    "revision": "0a702e8cac6d72949898",
+    "revision": "fdb9744afe52b1cfe45a",
     "url": "/online-cbs-frontend/static/css/main.eab24d3c.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/online-cbs-frontend/static/js/2.b28d45e0.chunk.js.LICENSE"
   },
   {
-    "revision": "0a702e8cac6d72949898",
-    "url": "/online-cbs-frontend/static/js/main.9fae0031.chunk.js"
+    "revision": "fdb9744afe52b1cfe45a",
+    "url": "/online-cbs-frontend/static/js/main.4ed39880.chunk.js"
   },
   {
     "revision": "cddf7309740fff56433c",
