@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/online-cbs-frontend/precache-manifest.52109237c08e17dbf0d9e7df14a2f968.js"
+  "/online-cbs-frontend/precache-manifest.49d4f41a5561628fb3fac0794d3fb9c2.js"
 );
 
 self.addEventListener('message', (event) => {
