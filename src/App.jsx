@@ -9,7 +9,7 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/" component={Home}></Route>
-          <Route exact path="/a/:value" render={()=><h1>Hello user</h1>}></Route>
+          <Route path="/a/:value" render={()=><h1>Hello user</h1>}></Route>
         </Switch>
       </Router>
     </div>

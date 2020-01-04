@@ -28,17 +28,17 @@ const Home = (props) => {
     } 
 
     const handleOk= (value) => {
+        var users
+        var validUser
         if(value === "signin"){
-            var users = JSON.parse(localStorage.getItem("users"))
-            if(users.length === 0 ){
+            users = JSON.parse(localStorage.getItem("users"))
+            if(users === null){
                 alert('Not Recognized')
                 setMail('')
                 setPassword('')
             } else {
-
-                var validUser = false
-                console.log(users.length)
-                for(var i=0; i< users.length; i++){
+                validUser = false
+                for(let i=0; i< users.length; i++){
                     if(users[i].mail === mail && users[i].password === password){
                         validUser = true
                         break
@@ -53,11 +53,11 @@ const Home = (props) => {
             setPassword('')
             setSignInVisible(false)
         } else if(value === "signup"){
-            var users = JSON.parse(localStorage.getItem("users"))
+            users = JSON.parse(localStorage.getItem("users"))
             if(users===null)
                 users=[]
-            var validUser = true
-            for(var i=0;i<users.length; i++){
+            validUser = true
+            for(let i=0;i<users.length; i++){
                 if(users[i].mail === mail){
                     validUser = false
                     break
@@ -92,7 +92,7 @@ const Home = (props) => {
                     verticalAlign: 'center',
                 }}
                 >
-                    <h1>Welcome User!!!</h1>
+                    <h1>Welcome!!!</h1>
                 </div>
                 <Modal 
                     title="SignIn"
