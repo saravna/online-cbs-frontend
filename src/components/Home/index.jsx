@@ -131,7 +131,9 @@ const Home = (props) => {
                     <Form>
                         <Form.Item>
                             <Input
-                                prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                                type="mail"
+                                prefix={<Icon type="mail" 
+                                style={{ color: 'rgba(0,0,0,.25)' }} />}
                                 placeholder="Email"
                                 value={mail}
                                 onChange={(e)=> handleChange(e.target.value,'mail')}
@@ -144,7 +146,7 @@ const Home = (props) => {
                                 placeholder="Password"
                                 value={password}
                                 onChange={(e)=> handleChange(e.target.value,'pass')}
-                            />,
+                            />
                         </Form.Item>
                         <Form.Item>
                             <Input
@@ -153,7 +155,7 @@ const Home = (props) => {
                                 placeholder="Conform Password"
                                 value={cPassword}
                                 onChange={(e)=> handleChange(e.target.value,'cpass')}
-                            />,
+                            />
                         </Form.Item>
                     </Form>
                 </Modal>
