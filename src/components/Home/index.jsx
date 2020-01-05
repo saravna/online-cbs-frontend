@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom'
 import { 
      Button , Layout, Modal, Form, Input, Icon
 } from 'antd';
+// import './carousel.css'
 const { Header, Content } = Layout
 
 const Home = (props) => {
@@ -44,8 +45,13 @@ const Home = (props) => {
                         break
                     }
                 }
-                if(validUser)
-                    alert("Valid")
+                if(validUser){
+                    localStorage.setItem("loggedUser",{
+                        mail,
+                        password
+                    })
+                    props.history.push("/menu")
+                }
                 else 
                     alert("Not Valid")
             }
@@ -92,7 +98,8 @@ const Home = (props) => {
                     verticalAlign: 'center',
                 }}
                 >
-                    <h1>Welcome!!!</h1>
+                    <h1>Welcome user!!!</h1>
+                    
                 </div>
                 <Modal 
                     title="SignIn"
