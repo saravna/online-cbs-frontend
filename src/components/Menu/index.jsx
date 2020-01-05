@@ -114,7 +114,7 @@ const Menu = () => {
                 <Card
                     style={{width:"300px", display: "inline-block",margin:"5px"}}
                     cover={<img src={item.image}></img>}
-                    actions={[<Button id={item.id} onClick={(e)=> removeFromCart(e.target.id)}><Icon type="minus"/>Add to cart</Button>]}
+                    actions={[<Button id={item.id} onClick={(e)=> removeFromCart(e.target.id)}><Icon type="minus"/>Remove</Button>]}
                 >
                     <Meta
                         title={item.name}
