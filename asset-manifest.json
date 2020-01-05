@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/online-cbs-frontend/static/css/main.eab24d3c.chunk.css",
-    "main.js": "/online-cbs-frontend/static/js/main.e9363bf0.chunk.js",
-    "main.js.map": "/online-cbs-frontend/static/js/main.e9363bf0.chunk.js.map",
+    "main.js": "/online-cbs-frontend/static/js/main.d4e61c45.chunk.js",
+    "main.js.map": "/online-cbs-frontend/static/js/main.d4e61c45.chunk.js.map",
     "runtime-main.js": "/online-cbs-frontend/static/js/runtime-main.866ed493.js",
     "runtime-main.js.map": "/online-cbs-frontend/static/js/runtime-main.866ed493.js.map",
     "static/css/2.35f98baf.chunk.css": "/online-cbs-frontend/static/css/2.35f98baf.chunk.css",
     "static/js/2.27469647.chunk.js": "/online-cbs-frontend/static/js/2.27469647.chunk.js",
     "static/js/2.27469647.chunk.js.map": "/online-cbs-frontend/static/js/2.27469647.chunk.js.map",
     "index.html": "/online-cbs-frontend/index.html",
-    "precache-manifest.1c839447e8b3f48567692b840467d2ab.js": "/online-cbs-frontend/precache-manifest.1c839447e8b3f48567692b840467d2ab.js",
+    "precache-manifest.633a450ed652fbe68ac72462bac604c5.js": "/online-cbs-frontend/precache-manifest.633a450ed652fbe68ac72462bac604c5.js",
     "service-worker.js": "/online-cbs-frontend/service-worker.js",
     "static/css/2.35f98baf.chunk.css.map": "/online-cbs-frontend/static/css/2.35f98baf.chunk.css.map",
     "static/css/main.eab24d3c.chunk.css.map": "/online-cbs-frontend/static/css/main.eab24d3c.chunk.css.map",
@@ -20,6 +20,6 @@
     "static/css/2.35f98baf.chunk.css",
     "static/js/2.27469647.chunk.js",
     "static/css/main.eab24d3c.chunk.css",
-    "static/js/main.e9363bf0.chunk.js"
+    "static/js/main.d4e61c45.chunk.js"
   ]
 }
