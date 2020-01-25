@@ -1,18 +1,13 @@
-import React from 'react';
-import './App.css';
-import { HashRouter as Router, Switch, Route } from 'react-router-dom'
-import Home from './components/Home'
-import Menu from './components/Menu'
+import React from 'react'
+import './App.css'
+import { BrowserRouter as Router} from 'react-router-dom'
+import AppRouter from './AppRouter'
 
 function App() {
   return (
     <div className="App">
       <Router>
-        <Switch>
-          <Route exact path="/" component={Home}></Route>
-          <Route exact path="/menu" component={Menu}></Route>
-          {/* <Route exact path="/success"><h1>Hello Success</h1></Route> */}
-        </Switch>
+        <AppRouter />
       </Router>
     </div>
   );

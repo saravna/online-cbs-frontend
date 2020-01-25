@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import { withRouter } from 'react-router-dom'
 import { 
      Button , Layout, Modal, Form, Input, Icon
@@ -13,10 +13,10 @@ const Home = (props) => {
     const [ password, setPassword ] = useState('')
     const [ cPassword, setCPassword ] = useState('')
 
-    useEffect(()=> {
-        var user = localStorage.getItem("users")
-        console.log(JSON.parse(user))
-    },[])
+    // useEffect(()=> {
+    //     var user = localStorage.getItem("users")
+    //     console.log(JSON.parse(user))
+    // },[])
 
     const handleChange = (value, field) => {
         if(field === 'mail'){
@@ -29,59 +29,56 @@ const Home = (props) => {
     } 
 
     const handleOk= (value) => {
-        var users
-        var validUser
         if(value === "signin"){
-            users = JSON.parse(localStorage.getItem("users"))
-            if(users === null){
-                alert('Not Recognized')
-                setMail('')
-                setPassword('')
-            } else {
-                validUser = false
-                for(let i=0; i< users.length; i++){
-                    if(users[i].mail === mail && users[i].password === password){
-                        validUser = true
-                        break
-                    }
+            fetch("http://localhost:4000/signin",{
+                method : "post",
+                headers : {
+                    'Content-Type' : 'application/json'
+                },
+                body : JSON.stringify({
+                    mail,
+                    password
+                })
+            })
+            .then(res => res.json()) 
+            .then(res => {
+                console.log(res)
+                if(!res.error){
+                    localStorage.setItem("authToken",res.authToken)
+                    props.history.push('/menu')
+                } else {
+                    alert(res.error)
                 }
-                if(validUser){
-                    localStorage.setItem("loggedUser",{
-                        mail,
-                        password
-                    })
-                    props.history.push("/menu")
-                }
-                else 
-                    alert("Not Valid")
-            }
+            })
             setMail('')
             setPassword('')
             setSignInVisible(false)
         } else if(value === "signup"){
-            users = JSON.parse(localStorage.getItem("users"))
-            if(users===null)
-                users=[]
-            validUser = true
-            for(let i=0;i<users.length; i++){
-                if(users[i].mail === mail){
-                    validUser = false
-                    break
-                }
-            }
-            if(validUser){
-                users = ([...users,{
+            fetch("http://localhost:4000/signup",{
+                method : "post",
+                headers : {
+                    'Content-Type' : 'application/json'
+                },
+                body : JSON.stringify({
                     mail,
-                    password
-                }])
-                localStorage.setItem("users",JSON.stringify(users))
-            } else {
-                alert(`user ${mail} is already present`)
-            }
-            setSignUpVisible(false)
-            setMail('')
-            setPassword('')
-            setCPassword('')
+                    password,
+                    role : "USER"
+                })
+            })
+            .then(res => res.json())
+            .then(res => {
+                if(!res.error){
+                    localStorage.setItem("authToken",res.authToken)
+                    setSignUpVisible(false)
+                    setMail('')
+                    setPassword('')
+                    setCPassword('')
+                    props.history.push('/menu')
+                }
+                else
+                    alert(res.error === 'mail must be unique' ? "Entered Mail id already exists" : res.error)
+            })
+            .catch(err => console.log(err))
         }
     }
 
