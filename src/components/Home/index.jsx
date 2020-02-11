@@ -1,12 +1,13 @@
 import React, {useState} from 'react';
 import { withRouter } from 'react-router-dom'
 import { 
-     Button , Layout, Modal, Form, Input, Icon
+     Button , Layout, Modal, Form, Input, Icon, notification
 } from 'antd';
 // import './carousel.css'
 const { Header, Content } = Layout
 
 const Home = (props) => {
+    const URL="http://localhost:4000";
     const [ signInVisible, setSignInVisible ] = useState(false)
     const [ signUpVisible, setSignUpVisible ] = useState(false)
     const [ mail, setMail] = useState('')
@@ -28,9 +29,27 @@ const Home = (props) => {
         }
     } 
 
+    const handleResetPassword = () => {
+        if(mail.length===0) {
+            notification.error({
+                message : 'Enter Registered Email',
+                placement : 'topRight',
+                duration : 2
+            })
+        } else {
+            fetch(`${URL}/resetpassword/${mail}`,{
+                method : 'get'
+            })
+            .then(res => res.json())
+            .then(res => res === 'success' ? notification.info({message :"Check your mail"}):notification.error({message : "Error sending mail"}))
+        }
+    }
+
     const handleOk= (value) => {
         if(value === "signin"){
-            fetch("http://localhost:4000/signin",{
+            console.log(URL+"/signin")
+            fetch(
+                URL+"/signin",{
                 method : "post",
                 headers : {
                     'Content-Type' : 'application/json'
@@ -42,19 +61,20 @@ const Home = (props) => {
             })
             .then(res => res.json()) 
             .then(res => {
-                console.log(res)
-                if(!res.error){
+                // console.log(res)
+                if(res.authToken){
                     localStorage.setItem("authToken",res.authToken)
                     props.history.push('/menu')
                 } else {
-                    alert(res.error)
+                    // console.log(res.error)
+                    notification.error({message:res.error,duration:2})
                 }
             })
             setMail('')
             setPassword('')
             setSignInVisible(false)
         } else if(value === "signup"){
-            fetch("http://localhost:4000/signup",{
+            fetch(URL+"/signup",{
                 method : "post",
                 headers : {
                     'Content-Type' : 'application/json'
@@ -89,20 +109,26 @@ const Home = (props) => {
                 <Button onClick={()=> setSignUpVisible(true)} style={{float : "right", margin :"3px"}} type="primary">SignUp</Button>
             </Header>
             <Content style={{ margin : "20px 10px"}}>
-                <div style={{
+                <h1 style={{display:"block",fontWeight:"900"}}>Cashless Canteen Management System</h1>
+                {/* <div style={{
                     display: 'flex',
                     justifyContent: 'center',
                     verticalAlign: 'center',
                 }}
-                >
-                    <h1>Welcome user!!!</h1>
+                > */}
+                    <h3 style={{display:"block"}}>Welcome user!!!</h3>
                     
-                </div>
+                {/* </div> */}
                 <Modal 
                     title="SignIn"
                     visible={signInVisible}
                     onOk={()=> handleOk("signin")}
                     okText="SignIn"
+                    onCancel={()=>{
+                        setSignInVisible(false)
+                        setMail('')
+                        setPassword('')
+                    }}
                 >
                 <Form  className="login-form">
                     <Form.Item>
@@ -123,6 +149,16 @@ const Home = (props) => {
                         placeholder="Password"
                         onChange={(e)=> handleChange(e.target.value,'pass')}
                         />
+                        <span 
+                            onClick={handleResetPassword}
+                            style={{
+                                color : '#42A7FA',
+                                padding:"3px",
+                                cursor : "pointer"
+                            }}
+                        >
+                            Reset Password
+                        </span>
                     </Form.Item>
                 </Form>
                 </Modal>
@@ -131,6 +167,13 @@ const Home = (props) => {
                     visible={signUpVisible}
                     onOk={()=> handleOk("signup")}
                     okText="SignUp" 
+                    onCancel={()=>{
+                        setSignUpVisible(false)
+                        setMail('')
+                        setPassword('')
+                        setCPassword('')
+                    }}
+
                 >
                     <Form>
                         <Form.Item>

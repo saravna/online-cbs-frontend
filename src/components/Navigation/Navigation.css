@@ -1,0 +1,96 @@
+.global-header-trigger{
+    height: 64px;
+    font-size: 20px;
+    padding: calc((64px - 26px) / 2) 24px;
+    cursor: pointer;
+    transition: all 0.3s, padding 0s;
+  }
+  .trigger {
+    font-size: 18px;
+    line-height: 64px;
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+  
+  .trigger:hover {
+    color: #1890ff;
+  }
+  
+  .title {
+    position: relative;
+    height: 64px;
+    padding-left: 24px;
+    overflow: hidden;
+    line-height: 64px;
+    background: #001529;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  
+  .title h1{
+    display: inline-block;
+    margin: 0 0 0 12px;
+    color: white;
+    font-weight: 600;
+    font-size: 20px;
+    vertical-align: middle;
+  }
+  
+  .title img{
+    display: inline-block;
+    height: 32px;
+    vertical-align: middle;
+  }
+  
+  .title__logo {
+    height: 32px;
+    width: 32px;
+  }
+  
+  .title__logo.light {
+    filter: invert(100%);
+  }
+  
+  .header-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  
+  .theme-switch {
+    height: 40px;
+    width: 260px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    line-height: 40px;
+    margin: 4px 0;
+  }
+  
+  .theme-switch.hidden {
+    display: none;
+  }
+  
+  .theme-switch-text {
+    padding-left: 24px;
+  }
+  
+  .theme-switch:hover {
+    cursor: pointer;
+  }
+  
+  .sider::-webkit-scrollbar {
+    width: 0 !important;
+  }
+  
+  .global-header{
+    position: relative;
+    height: 64px;
+    padding: 0;
+    background: #fff;
+    box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+  }
+  
