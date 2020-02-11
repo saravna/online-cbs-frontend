@@ -1,7 +1,7 @@
 module.exports = {
   apps : [{
     name: 'API',
-    script: 'app.js',
+    script: 'src/index.jsx',
 
     // Options reference: https://pm2.keymetrics.io/docs/usage/application-declaration/
     args: 'one two',
@@ -19,11 +19,11 @@ module.exports = {
 
   deploy : {
     production : {
-      user : 'node',
-      host : '212.83.163.1',
+      user : 'ubuntu',
+      host : '18.220.60.227',
       ref  : 'origin/master',
-      repo : 'git@github.com:repo.git',
-      path : '/var/www/production',
+      repo : 'https://github.com/saravna/online-cbs-frontend.git',
+      path : '/var/www/frontend',
       'post-deploy' : 'npm install && pm2 reload ecosystem.config.js --env production'
     }
   }
