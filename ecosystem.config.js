@@ -1,6 +1,6 @@
 module.exports = {
   apps : [{
-    name: 'API',
+    name: 'FRONTEND',
     script: 'reactServer.js',
 
     // Options reference: https://pm2.keymetrics.io/docs/usage/application-declaration/
