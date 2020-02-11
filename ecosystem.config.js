@@ -24,7 +24,7 @@ module.exports = {
       ref  : 'origin/master',
       repo : 'https://github.com/saravna/online-cbs-frontend.git',
       path : '/var/www/frontend',
-      'post-deploy' : 'sudo npm install && sudo npm build && pm2 reload ecosystem.config.js --env production'
+      'post-deploy' : 'sudo npm install && sudo npm run build && pm2 reload ecosystem.config.js --env production'
     }
   }
 };
