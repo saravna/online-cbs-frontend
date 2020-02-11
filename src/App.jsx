@@ -19,3 +19,6 @@ function App() {
 }
 
 export default App;
+
+
+  // "homepage": "https://saravna.github.io/online-cbs-frontend",
