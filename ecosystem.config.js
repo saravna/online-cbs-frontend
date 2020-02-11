@@ -1,7 +1,7 @@
 module.exports = {
   apps : [{
     name: 'API',
-    script: 'reactServer.js',
+    // script: 'reactServer.js',
 
     // Options reference: https://pm2.keymetrics.io/docs/usage/application-declaration/
     args: 'one two',
