@@ -3,7 +3,7 @@ import {Table, PageHeader } from 'antd'
 
 function Orders(props) {
     const [orders, setOrders] = useState([])
-    const URL="http://localhost:4000";
+    const URL=process.env.NODE_ENV==="development"?"http://localhost:4000":"http://18.220.60.227/backend";
 
     useEffect(()=> {
         localStorage.getItem('authToken') ?
