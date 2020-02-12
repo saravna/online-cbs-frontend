@@ -7,7 +7,7 @@ import {
 const { Header, Content } = Layout
 
 const Home = (props) => {
-    const URL=process.env.NODE_ENV==="development"?"http://localhost:4000":"http://ec2-18-220-60-227.us-east-2.compute.amazonaws.com/backend";
+    const URL=process.env.NODE_ENV==="development"?"http://localhost:4000":"/backend";
     const [ signInVisible, setSignInVisible ] = useState(false)
     const [ signUpVisible, setSignUpVisible ] = useState(false)
     const [ mail, setMail] = useState('')
@@ -74,6 +74,7 @@ const Home = (props) => {
             setPassword('')
             setSignInVisible(false)
         } else if(value === "signup"){
+            console.log(URL+"/signup")
             fetch(URL+"/signup",{
                 method : "post",
                 headers : {
