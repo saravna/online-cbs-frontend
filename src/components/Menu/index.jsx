@@ -3,7 +3,6 @@ import { Card, Icon, Button, Modal, PageHeader, Input, Badge, Select } from 'ant
 import Meta from 'antd/lib/card/Meta';
 import {withRouter} from 'react-router-dom'
 import StripeCheckOutButton from '../StripeButton';
-import {connect} from 'react-redux'
 const {Option} = Select
 
 const Menu = (props) => {
@@ -283,10 +282,4 @@ const Menu = (props) => {
         </div> );
 }
 
-const mapStateToProps = state => {
-    return {
-        URL : state.URL
-    }
-}
-
-export default connect(mapStateToProps, null)(withRouter(Menu));
+export default withRouter(Menu);
