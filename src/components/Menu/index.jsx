@@ -12,7 +12,7 @@ const Menu = (props) => {
     const [quantityEntered, setQuantityEntered] = useState({})
     const [sortOption, setSortOption] = useState('name')
     const [bill, setBill]=useState(0)
-    const URL=process.env.NODE_ENV==="development"?"http://localhost:4000":"http://18.220.60.227/backend";
+    const URL=process.env.NODE_ENV==="development"?"http://localhost:4000":"/backend";
     console.log(URL)
 
     // eslint-disable-next-line
