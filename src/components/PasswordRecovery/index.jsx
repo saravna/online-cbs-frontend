@@ -4,7 +4,7 @@ import {withRouter} from 'react-router-dom'
 
 function PasswordRecovery(props) {
     const [id, setId] = useState('')
-    const URL=process.env.NODE_ENV==="development"?"http://localhost:4000":"http://18.220.60.227/backend";
+    const URL=process.env.NODE_ENV==="development"?"http://localhost:4000":"/backend";
     console.log(URL)
     useEffect(() => {
         const urlParams = new URLSearchParams(window.location.search);
