@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { Card, Icon, Button, Modal, PageHeader, Input, Badge, Select } from 'antd'
+import { Card, Icon, Button, Modal, PageHeader, Input, Badge, Select, notification } from 'antd'
 import Meta from 'antd/lib/card/Meta';
 import {withRouter} from 'react-router-dom'
 import StripeCheckOutButton from '../StripeButton';
@@ -144,7 +144,14 @@ const Menu = (props) => {
             })
         })
         .then(res => res.json())
-        .then(res => handleBuy(res))
+        .then(res => {
+            if(!res.err)
+                handleBuy(res)
+            else 
+                notification.error({
+                    message : res.err,
+                })
+        })
     }
 
     const removeFromCart = (id) => {
