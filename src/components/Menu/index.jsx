@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { Card, Icon, Button, Modal, PageHeader, Input, Badge, Select, notification } from 'antd'
+import { Card, Icon, Button, Modal, PageHeader, Input, Badge, Select, notification, Slider } from 'antd'
 import Meta from 'antd/lib/card/Meta';
 import {withRouter} from 'react-router-dom'
 import StripeCheckOutButton from '../StripeButton';
@@ -12,6 +12,9 @@ const Menu = (props) => {
     const [quantityEntered, setQuantityEntered] = useState({})
     const [sortOption, setSortOption] = useState('name')
     const [bill, setBill]=useState(0)
+    const [lowPrice, setLowPrice]= useState(10)
+    const [highPrice, setHighPrice]= useState(200)
+
     const URL=process.env.NODE_ENV==="development"?"http://localhost:4000":"/backend";
     console.log(URL)
 
@@ -52,6 +55,8 @@ const Menu = (props) => {
         .then(res => res.json())
         .then(res => setMenu(res.sort((a,b)=>a.name>b.name?1:-1)))
     } 
+
+
 
     const addToCart = (id) => {
         var added = false
@@ -198,10 +203,13 @@ const Menu = (props) => {
             <Select value={sortOption} style={{width:"150px"}} onChange={handleSortTypeChange}>
                 {[['name','Name'],['high_price','High Price'],['low_price','Low Price'],['quantity','Quantity']].map(option => <Option key={option[0]} value={option[0]}>{option[1]}</Option>)}
             </Select>
+            <div style={{textAlign:"left", marginTop:"20px", fontSize:"12px", fontWeight:"600"}}>{"Filter by Price Range"}</div>
+            <Slider range defaultValue={[20, 50]} onChange={(e) => {setLowPrice(e[0]); setHighPrice(e[1])}} min={10} max={200} />
             <div style={{paddingTop:"90px"}}>  
             {/* <div style={{backgroundColor:"black",width:"100%",height:"20%",padding:"20px"}}></div> */}
-                {menu.map((item,i) =>
-                    item.menu.quantity!==0?
+                {menu.map((item,i) =>{
+                    console.log(item.menu.quantity!==0 && item.price>=lowPrice && item.price<=highPrice)
+                    return item.menu.quantity!==0 && item.price>=lowPrice && item.price<=highPrice?
                     <Card
                         key={i}
                         style={{width:"250px", display: "inline-block",margin:"15px",height:"420px",verticalAlign:'top'}}
@@ -226,7 +234,7 @@ const Menu = (props) => {
                         />
                     </Card>:
                     ''
-                        )}
+                    })}
             </div>
             <Modal 
                 visible={cartModalVisible}
