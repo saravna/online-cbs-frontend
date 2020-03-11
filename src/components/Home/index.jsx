@@ -13,6 +13,7 @@ const Home = (props) => {
     const [ mail, setMail] = useState('')
     const [ password, setPassword ] = useState('')
     const [ cPassword, setCPassword ] = useState('')
+    const [ mobile, setMobile ] = useState('')
 
     // useEffect(()=> {
     //     var user = localStorage.getItem("users")
@@ -26,6 +27,8 @@ const Home = (props) => {
             setPassword(value)
         } else if( field === 'cpass'){
             setCPassword(value)
+        } else if( field === 'mobile'){
+            setMobile(value)
         }
     } 
 
@@ -75,31 +78,41 @@ const Home = (props) => {
             setSignInVisible(false)
         } else if(value === "signup"){
             console.log(URL+"/signup")
-            fetch(URL+"/signup",{
-                method : "post",
-                headers : {
-                    'Content-Type' : 'application/json'
-                },
-                body : JSON.stringify({
-                    mail,
-                    password,
-                    role : "USER"
+            if(mail.lastIndexOf('.')<mail.length-1 && mail.lastIndexOf('.')-mail.indexOf('@')>1 && password.trim().length!==0 && !isNaN(mobile) && mobile.trim().length===10){
+                fetch(URL+"/signup",{
+                    method : "post",
+                    headers : {
+                        'Content-Type' : 'application/json'
+                    },
+                    body : JSON.stringify({
+                        mail,
+                        password,
+                        role : "USER",
+                        blocked : false,
+                        mobile
+                    })
                 })
-            })
-            .then(res => res.json())
-            .then(res => {
-                if(!res.error){
-                    localStorage.setItem("authToken",res.authToken)
-                    setSignUpVisible(false)
-                    setMail('')
-                    setPassword('')
-                    setCPassword('')
-                    props.history.push('/menu')
-                }
-                else
-                    alert(res.error === 'mail must be unique' ? "Entered Mail id already exists" : res.error)
-            })
-            .catch(err => console.log(err))
+                .then(res => res.json())
+                .then(res => {
+                    if(!res.error){
+                        localStorage.setItem("authToken",res.authToken)
+                        setSignUpVisible(false)
+                        setMail('')
+                        setPassword('')
+                        setCPassword('')
+                        setMobile('')
+                        props.history.push('/menu')
+                    }
+                    else
+                        alert(res.error === 'mail must be unique' ? "Entered Mail id already exists" : res.error)
+                })
+                .catch(err => console.log(err))
+            } else {
+                notification.error({
+                    message : "Enter valid details",
+                    duration : 5
+                })
+            }
         }
     }
 
@@ -200,9 +213,17 @@ const Home = (props) => {
                             <Input
                                 prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
                                 type="password"
-                                placeholder="Conform Password"
+                                placeholder="Confirm Password"
                                 value={cPassword}
                                 onChange={(e)=> handleChange(e.target.value,'cpass')}
+                            />
+                        </Form.Item>
+                        <Form.Item>
+                            <Input
+                                prefix={<Icon type="mobile" style={{ color: 'rgba(0,0,0,.25)' }}/>}
+                                placeholder="Mobile Number"
+                                value={mobile}
+                                onChange={(e)=>handleChange(e.target.value,"mobile")}
                             />
                         </Form.Item>
                     </Form>
