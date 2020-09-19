@@ -123,7 +123,7 @@ const Home = (props) => {
                 <Button onClick={()=> setSignUpVisible(true)} style={{float : "right", margin :"3px"}} type="primary">SignUp</Button>
             </Header>
             <Content style={{ margin : "20px 10px"}}>
-                <h1 style={{display:"block",fontWeight:"900"}}>Cashless Canteen Management</h1>
+                <h1 style={{display:"block",fontWeight:"900"}}>Cashless Canteen Management System</h1>
                 {/* <div style={{
                     display: 'flex',
                     justifyContent: 'center',
